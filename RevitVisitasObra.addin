@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>RevitVisitasObra</Name>
+    <Assembly>C:\Ruta\A\RevitVisitasObra.dll</Assembly>
+    <AddInId>2F3B4D8C-6E97-4DA0-9E62-111111111111</AddInId>
+    <FullClassName>RevitVisitasObra.App</FullClassName>
+    <VendorId>TC-HG</VendorId>
+    <VendorDescription>Técnicos Construcción HG</VendorDescription>
+  </AddIn>
+</RevitAddIns>
