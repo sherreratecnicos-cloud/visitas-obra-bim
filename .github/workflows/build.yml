@@ -1,0 +1,33 @@
+name: Build RevitVisitasObra
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v3
+
+    - name: Configurar MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Configurar NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restaurar paquetes NuGet
+      run: nuget restore RevitVisitasObra.sln
+
+    - name: Compilar proyecto
+      run: msbuild RevitVisitasObra.csproj /p:Configuration=Release
+
+    - name: Subir DLL como artefacto
+      uses: actions/upload-artifact@v3
+      with:
+        name: RevitVisitasObra-DLL
+        path: RevitVisitasObra/bin/Release/RevitVisitasObra.dll
