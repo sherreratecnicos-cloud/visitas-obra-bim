@@ -1,17 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
+    <!-- Evita que el SDK meta todos los .cs por defecto -->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
-<ItemGroup Condition="'$(BuildingOnCI)' == 'true'">
-  <Compile Include="Stubs\**\*.cs" />
-</ItemGroup>
+
+  <!-- Paquetes NuGet -->
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <!-- Compilación normal (en tu PC con Revit) -->
+  <ItemGroup Condition="'$(BuildingOnCI)' != 'true'">
+    <!-- Incluye todos los .cs excepto los stubs -->
+    <Compile Include="**\*.cs" Exclude="Stubs\**\*.cs" />
+    <!-- Aquí referencias reales a Revit -->
     <Reference Include="RevitAPI">
       <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
       <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
+
+  <!-- Compilación en GitHub CI -->
+  <ItemGroup Condition="'$(BuildingOnCI)' == 'true'">
+    <!-- Solo incluimos los stubs -->
+    <Compile Include="Stubs\RevitAPIStub.cs" />
+    <Compile Include="Stubs\RevitAPIUIStub.cs" />
+  </ItemGroup>
+
 </Project>
