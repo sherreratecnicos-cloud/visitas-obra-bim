@@ -2,6 +2,10 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+<ItemGroup Condition="'$(BuildingOnCI)' == 'true'">
+  <Compile Include="Stubs\RevitAPIStub.cs" />
+  <Compile Include="Stubs\RevitAPIUIStub.cs" />
+</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <Reference Include="RevitAPI">
