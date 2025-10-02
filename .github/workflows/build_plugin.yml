@@ -1,5 +1,8 @@
 name: Build RevitVisitasObra
 
+env:
+  BuildingOnCI: true
+
 on:
   push:
     branches: [ "main" ]
