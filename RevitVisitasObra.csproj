@@ -19,6 +19,10 @@
   <Compile Include="Stubs\**\*.cs" />
 </ItemGroup>
 
+<ItemGroup Condition="'$(DefineConstants)'=='STUBS'">
+  <Compile Include="Stubs\**\*.cs" />
+</ItemGroup>
+
 <ItemGroup Condition="'$(DefineConstants)'!='STUBS'">
   <Reference Include="RevitAPI">
     <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
