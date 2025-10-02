@@ -1,15 +1,3 @@
-// Stub mínimo para compilar en CI sin Revit instalado
-namespace Autodesk.Revit.DB
-{
-    public class Element {}
-    public class Document {}
-    public class XYZ 
-    {
-        public XYZ(double x, double y, double z) {}
-    }
-}
-
-// Stubs/RevitAPIStub.cs
 namespace Autodesk.Revit.UI {
     public interface IExternalCommand {
         Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements);
@@ -24,7 +12,6 @@ namespace Autodesk.Revit.UI {
     }
 }
 
-// Stubs/RevitAttributes.cs
 namespace Autodesk.Revit.Attributes {
     [System.AttributeUsage(System.AttributeTargets.Class)]
     public class TransactionAttribute : System.Attribute {
@@ -32,4 +19,3 @@ namespace Autodesk.Revit.Attributes {
     }
     public enum TransactionMode { Manual, Automatic }
 }
-
