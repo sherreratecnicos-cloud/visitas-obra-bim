@@ -1,7 +1,4 @@
-name: Build RevitVisitasObra
-
-env:
-  BuildingOnCI: true
+name: Build Revit Add-In
 
 on:
   push:
@@ -14,24 +11,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout código
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Configurar MSBuild
-      uses: microsoft/setup-msbuild@v1
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Configurar NuGet
-      uses: NuGet/setup-nuget@v1
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
 
-    - name: Restaurar paquetes NuGet
-      run: nuget restore RevitVisitasObra.sln
+    - name: Restore NuGet packages
+      run: nuget restore RevitVisitasObra.csproj
 
-    - name: Compilar proyecto
+    - name: Build project
       run: msbuild RevitVisitasObra.csproj /p:Configuration=Release
 
     - name: Upload build artifacts
-  uses: actions/upload-artifact@v4
-  with:
-    name: RevitVisitasObra
-    path: bin/Release/net48/RevitVisitasObra.dll
-
+      uses: actions/upload-artifact@v4
+      with:
+        name: RevitVisitasObra
+        path: bin/Release/**
