@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: RevitVisitasObra-DLL
-        path: bin/Release/RevitVisitasObra.dll
+        path: RevitVisitasObra/bin/Release/RevitVisitasObra.dll
