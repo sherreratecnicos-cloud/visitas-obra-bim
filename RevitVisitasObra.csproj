@@ -11,6 +11,23 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+<PropertyGroup>
+  <DefineConstants>STUBS</DefineConstants>
+</PropertyGroup>
+
+<ItemGroup Condition="'$(DefineConstants)'=='STUBS'">
+  <Compile Include="Stubs\**\*.cs" />
+</ItemGroup>
+
+<ItemGroup Condition="'$(DefineConstants)'!='STUBS'">
+  <Reference Include="RevitAPI">
+    <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+  </Reference>
+  <Reference Include="RevitAPIUI">
+    <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+  </Reference>
+</ItemGroup>
+
   <!-- Compilación normal (en tu PC con Revit) -->
   <ItemGroup Condition="'$(BuildingOnCI)' != 'true'">
     <!-- Incluye todos los .cs excepto los stubs -->
